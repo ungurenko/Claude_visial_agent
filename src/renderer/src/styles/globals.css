@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 20% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 12%;
+    --primary: 215 90% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 20% 12%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 220 15% 94%;
+    --accent-foreground: 220 20% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 215 90% 52%;
+    --radius: 0.5rem;
+
+    --background-secondary: 220 15% 97%;
+    --background-tertiary: 220 15% 94%;
+
+    --glass-bg: 220 20% 98% / 0.8;
+    --glass-blur: 20px;
+    --glass-saturate: 1.8;
+
+    --shadow-xs: 0 1px 2px hsl(220 20% 20% / 0.04);
+    --shadow-sm: 0 1px 3px hsl(220 20% 20% / 0.06), 0 1px 2px hsl(220 20% 20% / 0.04);
+    --shadow-md: 0 4px 6px -1px hsl(220 20% 20% / 0.06), 0 2px 4px -2px hsl(220 20% 20% / 0.04);
+    --shadow-lg: 0 10px 15px -3px hsl(220 20% 20% / 0.06), 0 4px 6px -4px hsl(220 20% 20% / 0.04);
+    --shadow-float: 0 20px 40px -8px hsl(220 20% 20% / 0.12), 0 8px 16px -4px hsl(220 20% 20% / 0.06);
+
+    --sidebar-bg: 220 20% 98% / 0.7;
+    --statusbar-bg: 220 20% 98% / 0.7;
+  }
+
+  .dark {
+    --background: 222 20% 11%;
+    --foreground: 220 15% 93%;
+    --card: 222 18% 14%;
+    --card-foreground: 220 15% 93%;
+    --popover: 222 18% 14%;
+    --popover-foreground: 220 15% 93%;
+    --primary: 215 85% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 15% 16%;
+    --secondary-foreground: 220 15% 93%;
+    --muted: 222 15% 16%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 222 15% 18%;
+    --accent-foreground: 220 15% 93%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 15% 20%;
+    --input: 222 15% 20%;
+    --ring: 215 85% 63%;
+
+    --background-secondary: 222 18% 13%;
+    --background-tertiary: 222 18% 16%;
+
+    --glass-bg: 222 20% 13% / 0.85;
+    --glass-blur: 20px;
+    --glass-saturate: 1.8;
+
+    --shadow-xs: 0 1px 2px hsl(222 30% 5% / 0.2);
+    --shadow-sm: 0 1px 3px hsl(222 30% 5% / 0.3), 0 1px 2px hsl(222 30% 5% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(222 30% 5% / 0.3), 0 2px 4px -2px hsl(222 30% 5% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(222 30% 5% / 0.3), 0 4px 6px -4px hsl(222 30% 5% / 0.2);
+    --shadow-float: 0 20px 40px -8px hsl(222 30% 5% / 0.4), 0 8px 16px -4px hsl(222 30% 5% / 0.3);
+
+    --sidebar-bg: 222 20% 12% / 0.8;
+    --statusbar-bg: 222 20% 12% / 0.8;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-app-region: drag;
+    overflow: hidden;
+    margin: 0;
+  }
+  button, input, textarea, a, select, [role="button"], [class*="scroll"], [class*="overflow"] {
+    -webkit-app-region: no-drag;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+
+  .glass-border {
+    border-color: hsl(var(--border) / 0.5);
+  }
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Global interactive feedback */
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Improved focus ring */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring) / 0.3);
+}
+
+/* Hide scrollbar on textarea inputs */
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scrollbar - macOS native feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.15);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground) / 0.3);
+}
